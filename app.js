@@ -6,7 +6,8 @@ var methodOverride   = require("method-override"),
     app              = express();
 
 // App config
-mongoose.connect("mongodb://localhost:27017/restful_blog", { useNewUrlParser: true});
+// mongoose.connect("mongodb://localhost:27017/restful_blog", { useNewUrlParser: true});
+mongoose.connect("**REMOVED**", { useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
