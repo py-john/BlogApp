@@ -5,6 +5,9 @@ var methodOverride   = require("method-override"),
     express          = require("express"),
     app              = express();
 
+// Port set by heroku
+var port = process.env.PORT || 8080
+
 // App config
 // mongoose.connect("mongodb://localhost:27017/restful_blog", { useNewUrlParser: true});
 mongoose.connect("**REMOVED**", { useNewUrlParser: true});
@@ -107,6 +110,6 @@ app.delete("/blogs/:id", function(req, res){
 });
 
 
-app.listen(3000, function(){
-    console.log("Serving on port 3000")
+app.listen(port, function(){
+    console.log("App running http://localhost:" + port);
 });
