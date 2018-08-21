@@ -5,12 +5,12 @@ var methodOverride   = require("method-override"),
     express          = require("express"),
     app              = express();
 
-// Port set by heroku
+// Port and database url
 var port = process.env.PORT || 8080
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/restful_blog";
 
 // App config
-// mongoose.connect("mongodb://localhost:27017/restful_blog", { useNewUrlParser: true});
-mongoose.connect("**REMOVED**", { useNewUrlParser: true});
+mongoose.connect(url, { useNewUrlParser: true});
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
