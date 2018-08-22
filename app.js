@@ -2,22 +2,22 @@ var methodOverride   = require("method-override"),
     expressSanitizer = require("express-sanitizer"),
     bodyParser       = require("body-parser"),
     mongoose         = require("mongoose"),
-    express          = require("express"),
-    app              = express();
+    express          = require("express");
 
 // Port and database url
 var port = process.env.PORT || 8080
 var url = process.env.DATABASEURL || "mongodb://localhost:27017/restful_blog";
 
 // App config
-mongoose.connect(url, { useNewUrlParser: true});
+var app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(expressSanitizer());
 app.use(methodOverride("_method"));
+mongoose.connect(url, { useNewUrlParser: true});
 
-// Mogoose/model config
+// Mongoose/model config
 var blogSchema = new mongoose.Schema({
     title: String,
     image: String,
@@ -29,7 +29,6 @@ var blogSchema = new mongoose.Schema({
         }
 });
 var Blog = mongoose.model("Blog", blogSchema);
-
 
 // Restful routes
 app.get("/", function(req, res){
@@ -108,7 +107,6 @@ app.delete("/blogs/:id", function(req, res){
         }
     });
 });
-
 
 app.listen(port, function(){
     console.log("App running http://localhost:" + port);
